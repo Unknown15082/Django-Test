@@ -7,8 +7,7 @@ from .models import Post
 
 def index(request):
     latest_posts = Post.objects.order_by('-created_time')[:10]
-    latest_posts_text = [str(p) for p in latest_posts]
-    return HttpResponse(', '.join(latest_posts_text))
+    return render(request, 'blogs/index.html', {'latest_posts': latest_posts})
 
 def detail(request, post_id):
     post = Post.objects.get(pk = post_id)
