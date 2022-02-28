@@ -1,3 +1,4 @@
+from urllib.request import HTTPPasswordMgrWithPriorAuth
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 
@@ -12,3 +13,6 @@ def index(request):
 def detail(request, post_id):
     post = get_object_or_404(Post, pk = post_id)
     return render(request, 'blogs/detail.html', {'post': post})
+
+def vote(request, post_id):
+    return HttpResponse("Voted")
