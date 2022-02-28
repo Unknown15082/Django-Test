@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 
 from .models import Post
@@ -10,6 +10,5 @@ def index(request):
     return render(request, 'blogs/index.html', {'latest_posts': latest_posts})
 
 def detail(request, post_id):
-    post = Post.objects.get(pk = post_id)
-    post_text = str(post)
-    return HttpResponse(f"Post #{post_id}: {post_text}")
+    post = get_object_or_404(Post, pk = post_id)
+    return render(request, 'blogs/detail.html', {'post': post})
